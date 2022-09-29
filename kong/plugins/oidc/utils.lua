@@ -19,7 +19,9 @@ end
 
 function M.get_redirect_uri(ngx)
   local function drop_query()
-    local uri = ngx.var.request_uri
+    --local uri = ngx.var.request_uri
+    local uri = ngx.var.http_referer
+    ngx.log(ngx.DEBUG, "Referer: " .. uri)
     local x = uri:find("?")
     if x then
       return uri:sub(1, x - 1)
