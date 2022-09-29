@@ -86,6 +86,7 @@ function handle(oidcConfig)
 end
 
 function make_oidc(oidcConfig)
+  ngx.log(ngx.DEBUG, "OidcHandler by 3Key")
   ngx.log(ngx.DEBUG, "OidcHandler calling authenticate, requested path: " .. ngx.var.request_uri)
   local unauth_action = oidcConfig.unauth_action
   if unauth_action ~= "auth" then
@@ -95,7 +96,7 @@ function make_oidc(oidcConfig)
 
   ngx.log(ngx.DEBUG, "Referer: " .. ngx.var.http_referer)
   --local res, err = require("resty.openidc").authenticate(oidcConfig, ngx.var.request_uri, unauth_action)
-  local res, err = require("resty.openidc").authenticate(oidcConfig, ngx.var.http_referer, unauth_action)
+  local res, err = require("resty.openidc").authenticate(oidcConfig, oidcConfig.redirect_uri, unauth_action)
 
   if err then
     if err == 'unauthorized request' then
