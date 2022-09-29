@@ -2,7 +2,7 @@ package = "kong-oidc"
 version = "1.3.0-3"
 source = {
     url = "git://github.com/3keyroman/kong-oidc",
-    tag = "test",
+    branch = "test",
     dir = "kong-oidc"
 }
 description = {
